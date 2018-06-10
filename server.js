@@ -25,8 +25,10 @@ app.get('/convert',function(req,res,next){
   var reg=/\d+/g;
   var peg=/[a-zA-Z]+/;
   var ans=data.match(reg);
+  if(ans==null){
+  res.json({error:"error input bruh1"})}
   var dans=data.match(peg)
-  console.log(ans[0]);
+//  console.log(ans[0]);
   console.log(dans[0])
   var initNum=Number(ans[0]);
   var finNum=0;
@@ -34,8 +36,7 @@ app.get('/convert',function(req,res,next){
   var st2="";
   var co="";
   
-  if(ans[0]=""){
-  res.json({error:"error input bruh"})}
+  
   
   if(dans[0]=="gal"){
   co="L";
