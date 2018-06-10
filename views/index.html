@@ -23,29 +23,16 @@
   <body>
     <header>
       <h1>
-        A Dream of the Future
+       Metric-Imperial Converter
       </h1>
     </header>
 
-    <main>
-      <p class="bold">Oh hi,</p>
+   
+    <form action="convert" method="get">
+      <input type="text" name="str">
+      <input type="submit">
       
-      <p>Tell me your hopes and dreams:</p>
-      
-      <form>
-        <input name="dream" type="text" maxlength="100" placeholder="Dreams!" aria-labelledby="submit-dream">
-        <button type="submit" id="submit-dream">Submit Dream</button>
-      </form>
-      
-      <section class="dreams">
-        <ul id="dreams"></ul>
-      </section>
-    </main>
-
-    <footer>
-      Made with <a href="https://glitch.com">Glitch</a>!
-    </footer>
-    
+    </form>
     
     <!-- import the webpage's client-side javascript file -->
     <script src="/client.js"></script>
