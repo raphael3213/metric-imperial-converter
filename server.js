@@ -5,8 +5,12 @@
 var express = require('express');
 var app = express();
 var bp=require('body-parser');
+var helmet=require('helmet')
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
+app.use(helmet.xssFilter());
+app.use(helmet.noSniff());
+app.use(helmet());
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
@@ -18,7 +22,7 @@ app.get("/", function (request, response) {
 app.get('/convert',function(req,res,next){
 
   var data=req.query.str;
-  var reg=/[0-9]+/;
+  var reg=/\d+/g;
   var peg=/[a-zA-Z]+/;
   var ans=data.match(reg);
   var dans=data.match(peg)
@@ -29,6 +33,10 @@ app.get('/convert',function(req,res,next){
   var st1="";
   var st2="";
   var co="";
+  
+  if(ans[0]=""){
+  res.json({error:"error input bruh"})}
+  
   if(dans[0]=="gal"){
   co="L";
   st1="Gallon";
