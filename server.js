@@ -18,6 +18,34 @@ app.get("/", function (request, response) {
 app.get('/convert',function(req,res,next){
 
   var data=req.query.str;
+  var reg=/[0-9]+/;
+  var peg=/[a-z A-Z]+/;
+  var ans=data.match(reg);
+  var dans=data.match(peg)
+  console.log(ans[0]);
+  console.log(dans[0])
+  
+  if(dans=="gal"){
+  
+  
+  }
+  else if(dans=="L")
+  {
+  }
+  else if(dans=="lbs"){
+  
+  }
+  else if(dans=="kg"){
+  }
+  else if(dans=="mi"){
+ 
+  
+  }
+  else if(dans=="km"){
+  }
+  
+  else{
+  }
   
 
 })
