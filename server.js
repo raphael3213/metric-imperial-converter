@@ -19,23 +19,23 @@ app.get('/convert',function(req,res,next){
 
   var data=req.query.str;
   var reg=/[0-9]+/;
-  var peg=/[a-z A-Z]+/;
+  var peg=/[a-zA-Z]+/;
   var ans=data.match(reg);
   var dans=data.match(peg)
   console.log(ans[0]);
   console.log(dans[0])
-  var initNum=ans[0].toNumber();
+  var initNum=Number(ans[0]);
   var finNum=0;
   var st1="";
   var st2="";
   var co="";
-  if(dans=="gal"){
+  if(dans[0]=="gal"){
   co="L";
   st1="Gallon";
     st2="Litre";
     finNum=initNum*3.78541;
   }
-  else if(dans=="L")
+  else if(dans[0]=="L")
   {
     st1="Litre";
     st2="Gallon";
@@ -43,30 +43,41 @@ app.get('/convert',function(req,res,next){
     finNum=initNum/3.78541;
     
   }
-  else if(dans=="lbs"){
+  else if(dans[0]=="lbs"){
   st1="Pound";
     st2="Kilograms"
     co="kg"
     finNum=initNum*0.453592
   }
-  else if(dans=="kg"){
-    st2="Pound";
+  else if(dans[0]=="kg"){
+    st2="Pounds";
     st1="Kilograms"
     co="lbs"
     finNum=initNum/0.453592
   }
-  else if(dans=="mi"){
+  else if(dans[0]=="mi"){
  st1="Miles";
     st2="Kilometers";
-    co="mi
+    co="km";
+    finNum=initNum* 1.60934;
   
   }
-  else if(dans=="km"){
+  else if(dans[0]=="km"){
+     st2="Miles";
+    st1="Kilometers";
+    co="mi";
+    finNum=initNum/ 1.60934;
   }
   
   else{
+    res.json({error:"error input bruh"})
   }
   
+  res.json({
+  initNum: initNum, initUnit: dans[0], returnNum: finNum, returnUnit: co, string: initNum.toString()+" "+st1+ " converts to "+finNum.toString()+" " +st2
+  
+  
+  })
 
 })
 // listen for requests :)
